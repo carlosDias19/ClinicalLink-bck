@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 
 @Entity()
 export class User {
@@ -20,6 +20,9 @@ export class User {
   @Column({name:'cpf', length: 255 })
   cpf: string;
 
+  @Column({name:'username', length: 50 })
+  username: string;
+
   @Column({name:'cnpj', length: 255 })
   cnpj: string;
 
@@ -28,4 +31,7 @@ export class User {
 
   @Column({name:'tipoUsuario', length: 1 })
   tipoUsuario: number;
+
+  @OneToOne(type => User)
+  supervisor: User;
 }

@@ -1,6 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
-import { User } from 'src/universidade/entities/universidade.entity';
-
+import { User } from 'src/user/entities/user.entity';
 @Entity()
 export class Consulta {
   @PrimaryGeneratedColumn()
@@ -11,6 +10,9 @@ export class Consulta {
 
   @Column('descricao')
   descricao: string;
+
+  @Column('data_consulta')
+  dataConsulta: Date;
 
   @ManyToOne(type => User)
   prestador: User;
