@@ -7,10 +7,10 @@ import { Consulta } from '../consulta/entities/consulta.entity'; // Ajuste o cam
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User, Consulta]), // Adicionando repositórios aqui
+    TypeOrmModule.forFeature([User, Consulta]), 
   ],
   controllers: [FuncionalidadeSupervisorController],
   providers: [FuncionalidadeSupervisorService],
-  exports: [FuncionalidadeSupervisorService], // Expondo o serviço se necessário em outros módulos
+  exports: [FuncionalidadeSupervisorService], 
 })
 export class FuncionalidadeSupervisorModule {}

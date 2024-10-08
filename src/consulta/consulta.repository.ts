@@ -10,7 +10,7 @@ export class ConsultaRepository extends Repository<Consulta> {
         return this.find({
             where: {
                 paciente: user,
-                dataConsulta: Between(startDate, endDate), // Supondo que a propriedade de data da consulta seja chamada 'dataConsulta'
+                dataConsulta: Between(startDate, endDate), 
             },
         });
     }

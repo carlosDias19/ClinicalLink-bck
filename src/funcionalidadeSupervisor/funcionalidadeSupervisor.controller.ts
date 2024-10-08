@@ -21,5 +21,7 @@ export class FuncionalidadeSupervisorController {
     return this.funcionalidadeSupervisorService.buscarConsultasMes(user,dataInicio,dataFim);
   }
 
+  
+
 
 }
