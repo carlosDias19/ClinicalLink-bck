@@ -16,17 +16,19 @@ export class AvaliacaoService {
     return 'This action adds a new avaliacao';
   }
 
+  async findById(id: number) {
+    return await this.avaliacaoRepository.find({ where: { id } });
+  }
+
   findAll() {
     return `This action returns all avaliacao`;
   }
 
+  // update(id: number, updateAvaliacaoDto: UpdateAvaliacaoDto) {
+  //   return `This action updates a #${id} avaliacao`;
+  // }
 
-
-  update(id: number, updateAvaliacaoDto: UpdateAvaliacaoDto) {
-    return `This action updates a #${id} avaliacao`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} avaliacao`;
+  async delete(id: number): Promise<void> {
+    this.avaliacaoRepository.delete(id);
   }
 }

@@ -18,17 +18,17 @@ export class AvaliacaoController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.avaliacaoService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.avaliacaoService.findById(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAvaliacaoDto: UpdateAvaliacaoDto) {
-    return this.avaliacaoService.update(+id, updateAvaliacaoDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateAvaliacaoDto: UpdateAvaliacaoDto) {
+  //   return this.avaliacaoService.update(id, updateAvaliacaoDto);
+  // }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.avaliacaoService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.avaliacaoService.delete(id);
   }
 }

@@ -14,7 +14,6 @@ import { EspecializacaoModule } from './especializacao/especializacao.module';
 import { Especializacao } from './especializacao/entities/especializacao.entity';
 import { Pagamento } from './pagamento/entities/pagamento.entity';
 import { Consulta } from './consulta/entities/consulta.entity';
-import { FuncionalidadeSupervisorModule } from './funcionalidadeSupervisor/funcionalidadeSupervisor.module';
 
 @Module({
   imports: [
@@ -29,7 +28,7 @@ import { FuncionalidadeSupervisorModule } from './funcionalidadeSupervisor/funci
       synchronize: true, 
     }),
     TypeOrmModule.forFeature([User]), 
-    UserModule, EspecializacaoModule, EspecialistaModule, PagamentoModule, ConsultaModule,FuncionalidadeSupervisorModule
+    UserModule, EspecializacaoModule, EspecialistaModule, PagamentoModule, ConsultaModule
   ],
 })
 export class AppModule {}
