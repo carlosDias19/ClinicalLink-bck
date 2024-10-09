@@ -10,6 +10,6 @@ import { ConsultaRepository } from './consulta.repository';
     TypeOrmModule.forFeature([Consulta]), 
   ],
   controllers: [ConsultaController],
-  providers: [ConsultaService],
+  providers: [ConsultaService , ConsultaRepository],
 })
 export class ConsultaModule {}

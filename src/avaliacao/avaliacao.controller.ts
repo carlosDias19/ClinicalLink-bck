@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { AvaliacaoService } from './avaliacao.service';
+import { Avaliacao } from './entities/avaliacao.entity';
 import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
 
@@ -8,7 +9,7 @@ export class AvaliacaoController {
   constructor(private readonly avaliacaoService: AvaliacaoService) {}
 
   @Post()
-  create(@Body() createAvaliacaoDto: CreateAvaliacaoDto) {
+  create(@Body() createAvaliacaoDto: Avaliacao) {
     return this.avaliacaoService.create(createAvaliacaoDto);
   }
 
@@ -22,10 +23,10 @@ export class AvaliacaoController {
     return this.avaliacaoService.findById(id);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateAvaliacaoDto: UpdateAvaliacaoDto) {
-  //   return this.avaliacaoService.update(id, updateAvaliacaoDto);
-  // }
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() avaliacaoUpdate: Avaliacao) {
+    return this.avaliacaoService.updateAvaliacao(id, updateAvaliacaoDto);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: number) {

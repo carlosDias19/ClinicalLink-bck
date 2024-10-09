@@ -1,28 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Consulta } from './entities/consulta.entity';
 import { CreateConsultaDto } from './dto/create-consulta.dto';
 import { UpdateConsultaDto } from './dto/update-consulta.dto';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
-export class ConsultaService {
-  create(createConsultaDto: CreateConsultaDto) {
-    return 'This action adds a new consulta';
-  }
+export class ConsultaRepository {
+    constructor(
+        @InjectRepository(Consulta)
+        private readonly consultaRepository: ConsultaRepository,
+    ) {}
 
-  findAll() {
-    return `This action returns all consulta`;
-  }
+    async findAllConsultasUsuario(usuario: User): Promise<Consulta[]> {
+        return this.consultaRepository.findAllConsultasUsuario(usuario);
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} consulta`;
-  }
+    async findConsultaUsuario(prestadorConsulta: User , pacienteConsulta:User): Promise<Consulta> {
+        return this.consultaRepository.findConsultaUsuario(prestadorConsulta,pacienteConsulta);
+    }
 
-  update(id: number, updateConsultaDto: UpdateConsultaDto) {
-    return `This action updates a #${id} consulta`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} consulta`;
-  }
+    async createConsulta(consulta: Consulta): Promise<Consulta> {
+        return this.consultaRepository.createConsulta(consulta);
+    }
+    
 }

@@ -4,31 +4,32 @@ import { Repository } from 'typeorm';
 import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
 import { Avaliacao } from '../avaliacao/entities/avaliacao.entity'
+import { AvaliacaoRepository } from './avaliacao.repository';
 
 @Injectable()
 export class AvaliacaoService {
   constructor(
     @InjectRepository(Avaliacao)
-    private readonly avaliacaoRepository: Repository<Avaliacao>,
+    private readonly avaliacaoRepository: AvaliacaoRepository,
   ){}
 
-  create(createAvaliacaoDto: CreateAvaliacaoDto) {
-    return 'This action adds a new avaliacao';
+  create(avaliacao: Avaliacao) {
+    return this.avaliacaoRepository.createAvaliacao(avaliacao);
   }
 
-  async findById(id: number) {
-    return await this.avaliacaoRepository.find({ where: { id } });
+  async findOne(id: number) {
+    return this.avaliacaoRepository.findOne(id);
   }
 
   findAll() {
-    return `This action returns all avaliacao`;
+    return this.avaliacaoRepository.findAll();
   }
 
-  // update(id: number, updateAvaliacaoDto: UpdateAvaliacaoDto) {
-  //   return `This action updates a #${id} avaliacao`;
-  // }
+  update(id: number, updateAvaliacao: Avaliacao) {
+    return this.avaliacaoRepository.updateAvaliacao(id,updateAvaliacao);
+  }
 
   async delete(id: number): Promise<void> {
-    this.avaliacaoRepository.delete(id);
+    this.avaliacaoRepository.deleteAvaliacao(id);
   }
 }

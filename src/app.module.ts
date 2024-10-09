@@ -14,6 +14,7 @@ import { EspecializacaoModule } from './especializacao/especializacao.module';
 import { Especializacao } from './especializacao/entities/especializacao.entity';
 import { Pagamento } from './pagamento/entities/pagamento.entity';
 import { Consulta } from './consulta/entities/consulta.entity';
+import { ContaBancariaModule } from './conta-bancaria/conta-bancaria.module';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { Consulta } from './consulta/entities/consulta.entity';
       synchronize: true, 
     }),
     TypeOrmModule.forFeature([User]), 
-    UserModule, EspecializacaoModule, EspecialistaModule, PagamentoModule, ConsultaModule
+    UserModule, EspecializacaoModule, EspecialistaModule, PagamentoModule, ConsultaModule, ContaBancariaModule
   ],
 })
 export class AppModule {}

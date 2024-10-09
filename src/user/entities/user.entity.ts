@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany } from 'typeorm';
+import { ContaBancaria } from 'src/conta-bancaria/entities/conta-bancaria.entity';
 
 @Entity()
 export class User {
@@ -34,4 +35,6 @@ export class User {
 
   @OneToOne(type => User)
   supervisor: User;
+
+  @OneToMany(type => Cont)
 }
