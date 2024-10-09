@@ -4,21 +4,22 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from '../user/entities/user.entity'
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
 
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>
+    private readonly userRepository: UserRepository
   ){}
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  createUsuario(usuario: User) {
+    return this.userRepository.createUser(usuario);
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findByUsername(username: string) {
+    return this.userRepository.findByUsername(username);
   }
 
   findOne(username: string) {6

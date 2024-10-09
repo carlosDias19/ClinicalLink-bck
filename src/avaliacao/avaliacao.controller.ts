@@ -20,12 +20,12 @@ export class AvaliacaoController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.avaliacaoService.findById(id);
+    return this.avaliacaoService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() avaliacaoUpdate: Avaliacao) {
-    return this.avaliacaoService.updateAvaliacao(id, updateAvaliacaoDto);
+  updateAvaliacao(@Param('id') id: string, @Body() avaliacaoUpdate: Avaliacao) {
+    return this.avaliacaoService.updateAvaliacao(id, avaliacaoUpdate);
   }
 
   @Delete(':id')

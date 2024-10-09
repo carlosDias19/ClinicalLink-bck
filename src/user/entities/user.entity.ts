@@ -15,6 +15,9 @@ export class User {
   @Column({name:'email', length: 255 })
   email: string;
 
+  @Column({name:'username', length: 50 })
+  username: string; 
+
   @Column({name:'nome', length: 255 })
   nome: string;
 
@@ -36,5 +39,4 @@ export class User {
   @OneToOne(type => User)
   supervisor: User;
 
-  @OneToMany(type => Cont)
 }
