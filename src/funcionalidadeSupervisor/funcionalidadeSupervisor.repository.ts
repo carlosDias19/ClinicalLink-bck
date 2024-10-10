@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between } from 'typeorm';
 import { Consulta } from 'src/consulta/entities/consulta.entity';
 import { User } from 'src/user/entities/user.entity';
+import { UserRepository } from 'src/user/user.repository';
 import { ConsultaRepository } from 'src/consulta/consulta.repository';
 
 
@@ -10,18 +11,13 @@ import { ConsultaRepository } from 'src/consulta/consulta.repository';
 export class EspecialistaRepository {
     constructor(
         @InjectRepository(Consulta)
-        private readonly consuoltaRepository: ConsultaRepository
+        private readonly consultaRepository: ConsultaRepository
         @InjectRepository(User)
-        //private readonly userRepository: UserRepository,
+        private readonly userRepository: UserRepository,
     ) {}
 
-    async findByUserBetweenDates(user: User, startDate: Date, endDate: Date): Promise<Consulta[]> {
-        return this.c({
-            where: {
-                paciente: user,
-                dataConsulta: Between(startDate, endDate), 
-            },
-        });
+    async findByUserBetweenDates(usuario: User, startDate: Date, endDate: Date): Promise<Consulta[]> {
+        return this.consultaRepository.findConsultaEntreDatas(usuario,startDate,endDate);
     }
     
 }

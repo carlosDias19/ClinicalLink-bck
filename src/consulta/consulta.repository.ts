@@ -22,5 +22,9 @@ export class ConsultaRepository {
     async createConsulta(Consulta: Consulta): Promise<Consulta> {
         return this.consultaRepository.save(Consulta);
     }
+
+    async findConsultaEntreDatas(usuario: User,dataInicio: Date, dataFim: Date){
+        return this.consultaRepository.find({where : {paciente: usuario,dataConsulta: Between(dataInicio, dataFim),}})
+    }
     
 }

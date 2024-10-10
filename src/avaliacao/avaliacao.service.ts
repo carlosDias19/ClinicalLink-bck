@@ -25,7 +25,7 @@ export class AvaliacaoService {
     return this.avaliacaoRepository.findAll();
   }
 
-  update(id: number, updateAvaliacao: Avaliacao) {
+  updateAvaliacao(id: number, updateAvaliacao: Avaliacao) {
     return this.avaliacaoRepository.updateAvaliacao(id,updateAvaliacao);
   }
 
