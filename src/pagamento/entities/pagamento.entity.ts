@@ -10,9 +10,4 @@ export class Pagamento {
   @Column('valor')
   valor: number;
 
-  @OneToMany(type => ContaBancaria)
-  contaPagante : ContaBancaria
-
-  @OneToMany(type => ContaBancaria)
-  contaRecebe  : ContaBancaria
 }

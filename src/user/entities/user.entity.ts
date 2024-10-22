@@ -23,10 +23,7 @@ export class User {
 
   @Column({name:'cpf', length: 255 })
   cpf: string;
-
-  @Column({name:'username', length: 50 })
-  username: string;
-
+  
   @Column({name:'cnpj', length: 255 })
   cnpj: string;
 

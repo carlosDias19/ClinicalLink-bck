@@ -14,8 +14,8 @@ export class UserRepository {
     return this.userRepository.findOne({ where: { username } });
   }
 
-  async findBySupervisor(supervisor: User): Promise<User[]> {
-    return this.userRepository.find({ where: { supervisor: { id: supervisor.id } } });
+  async findBySupervisor(supervisor: number): Promise<User[]> {
+    return this.userRepository.find({ where: { supervisor: { id: supervisor } } });
   }
 
   async findByLogin(login: string): Promise<User | undefined> {

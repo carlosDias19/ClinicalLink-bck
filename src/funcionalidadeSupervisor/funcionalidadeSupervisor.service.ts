@@ -21,13 +21,13 @@ export class FuncionalidadeSupervisorService {
 
   
 
-      async buscarAlunosSupervisionados(supervisor : User): Promise<User[]> {
+      async buscarAlunosSupervisionados(supervisor : number): Promise<User[]> {
         const user = await this.userRepository.findBySupervisor(supervisor);
         return user || null;
       }
 
       async buscarConsultasMes(user: User,dataInicio: Date, dataFim: Date ): Promise<Consulta[]>{
-        const consultas = await this.consultaRepository.findByUserBetweenDates(user,dataInicio,dataFim);
+        const consultas = await this.consultaRepository.findConsultaEntreDatas(user,dataInicio,dataFim);
         return consultas || null;
       }
 

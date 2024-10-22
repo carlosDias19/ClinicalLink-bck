@@ -24,7 +24,7 @@ export class AvaliacaoController {
   }
 
   @Patch(':id')
-  updateAvaliacao(@Param('id') id: string, @Body() avaliacaoUpdate: Avaliacao) {
+  updateAvaliacao(@Param('id') id: number, @Body() avaliacaoUpdate: Avaliacao) {
     return this.avaliacaoService.updateAvaliacao(id, avaliacaoUpdate);
   }
 

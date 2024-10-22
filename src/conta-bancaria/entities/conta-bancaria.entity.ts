@@ -14,7 +14,5 @@ export class ContaBancaria {
   @Column('conta_destino')
   contaDestino: string;
 
-  @ManyToOne(type => User)
-  usuario: User;
 
 }

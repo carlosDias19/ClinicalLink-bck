@@ -22,12 +22,12 @@ export class UserService {
     return this.userRepository.findByUsername(username);
   }
 
-  findOne(username: string) {6
-    return `This action returns a user`;
+  findBySupervisor(supervisor: number) {
+    return this.userRepository.findBySupervisor(supervisor);
   }
 
-  async findByEmail(email: string) {
-    return await this.userRepository.findOne({ where: { email }});
+  async findByLogin(login: string){
+    return this.userRepository.findByLogin(login);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
