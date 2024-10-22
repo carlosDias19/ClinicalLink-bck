@@ -11,9 +11,10 @@ export class ConsultaRepository {
         private readonly consultaRepository: Repository<Consulta>,
     ) {}
 
-    async findAllConsultasUsuario(usuario : User): Promise<Consulta[]> {
-        return this.consultaRepository.find({where :{ paciente : usuario}});
+    async findAllConsultasUsuario(idUsuario: number): Promise<Consulta[]> {
+        return this.consultaRepository.find({ where: { prestador: { id: idUsuario } } });
     }
+    
 
     async findConsultaUsuario(prestadorConsulta : User, pacienteConsulta : User): Promise<Consulta> {
         return this.consultaRepository.findOne({where : {prestador : prestadorConsulta, paciente : pacienteConsulta}});

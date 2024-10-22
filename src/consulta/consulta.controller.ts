@@ -13,10 +13,10 @@ export class ConsultaController {
     return this.consultaService.createConsulta(consulta);
   }
 
-  // @Get(':id')
-  // findAllConsultasUsuario(@Param('id') id: string) {
-  //   return this.consultaService.findOne(+id);
-  // }
+  @Get(':id')
+  findAllConsultasUsuario(@Param('id') idUsuario :number) {
+    return this.consultaService.findAllConsultasUsuario(idUsuario);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateConsultaDto: UpdateConsultaDto) {

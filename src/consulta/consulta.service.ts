@@ -14,8 +14,8 @@ export class ConsultaService {
         private readonly consultaRepository: ConsultaRepository,
     ) {}
 
-    async findAllConsultasUsuario(usuario: User): Promise<Consulta[]> {
-        return this.consultaRepository.findAllConsultasUsuario(usuario);
+    async findAllConsultasUsuario(idUsuario: number): Promise<Consulta[]> {
+        return this.consultaRepository.findAllConsultasUsuario(idUsuario);
     }
 
     async findConsultaUsuario(prestadorConsulta: User , pacienteConsulta:User): Promise<Consulta> {
