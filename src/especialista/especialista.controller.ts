@@ -7,10 +7,10 @@ import { UpdateEspecialistaDto } from './dto/update-especialista.dto';
 export class EspecialistaController {
   constructor(private readonly especialistaService: EspecialistaService) {}
 
-  @Post()
-  create(@Body() createEspecialistaDto: CreateEspecialistaDto) {
-    return this.especialistaService.create(createEspecialistaDto);
-  }
+  // @Post()
+  // create(@Body() createEspecialistaDto: CreateEspecialistaDto) {
+  //   return this.especialistaService.create(createEspecialistaDto);
+  // }
 
   @Get()
   findAll() {
@@ -22,13 +22,13 @@ export class EspecialistaController {
     return this.especialistaService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEspecialistaDto: UpdateEspecialistaDto) {
-    return this.especialistaService.update(+id, updateEspecialistaDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateEspecialistaDto: UpdateEspecialistaDto) {
+  //   return this.especialistaService.update(+id, updateEspecialistaDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.especialistaService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.especialistaService.remove(+id);
+  // }
 }

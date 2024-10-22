@@ -11,7 +11,7 @@ import { ConsultaRepository } from 'src/consulta/consulta.repository';
 export class EspecialistaRepository {
     constructor(
         @InjectRepository(Consulta)
-        private readonly consultaRepository: ConsultaRepository
+        private readonly consultaRepository: ConsultaRepository,
         @InjectRepository(User)
         private readonly userRepository: UserRepository,
     ) {}

@@ -12,7 +12,7 @@ export class ConsultaRepository {
     ) {}
 
     async findAllConsultasUsuario(usuario : User): Promise<Consulta[]> {
-        return this.consultaRepository.findOne({where :{ paciente : usuario}});
+        return this.consultaRepository.find({where :{ paciente : usuario}});
     }
 
     async findConsultaUsuario(prestadorConsulta : User, pacienteConsulta : User): Promise<Consulta> {

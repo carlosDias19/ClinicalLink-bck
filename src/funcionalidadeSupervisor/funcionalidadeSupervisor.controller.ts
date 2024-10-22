@@ -9,9 +9,9 @@ export class FuncionalidadeSupervisorController {
   constructor(
     private readonly funcionalidadeSupervisorService: FuncionalidadeSupervisorService) {}
 
-  @Get(':user')
-  buscarAlunosSupervisionados(@Param('user') user: User) {
-    return this.funcionalidadeSupervisorService.buscarAlunosSupervisionados(user);
+  @Get(':supervisor')
+  buscarAlunosSupervisionados(@Param('supervisor') supervisor: number) {
+    return this.funcionalidadeSupervisorService.buscarAlunosSupervisionados(supervisor);
   }
 
   @Get(':user/:dataInicio/:dataFim')

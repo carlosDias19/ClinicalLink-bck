@@ -6,7 +6,7 @@ import { PagamentoModule } from './pagamento/pagamento.module';
 import { EspecialistaModule } from './especialista/especialista.module';
 import { AvaliacaoModule } from './avaliacao/avaliacao.module';
 import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
+//import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { Especialista } from './especialista/entities/especialista.entity'; // Importe sua entidade Especialista
