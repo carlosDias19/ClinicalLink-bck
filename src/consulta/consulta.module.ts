@@ -6,10 +6,8 @@ import { ConsultaController } from './consulta.controller';
 import { ConsultaRepository } from './consulta.repository';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Consulta]), 
-  ],
+  imports: [TypeOrmModule.forFeature([Consulta])],
   controllers: [ConsultaController],
-  providers: [ConsultaService , ConsultaRepository],
+  providers: [ConsultaService, ConsultaRepository],
 })
 export class ConsultaModule {}

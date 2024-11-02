@@ -15,6 +15,13 @@ import { Especializacao } from './especializacao/entities/especializacao.entity'
 import { Pagamento } from './pagamento/entities/pagamento.entity';
 import { Consulta } from './consulta/entities/consulta.entity';
 import { ContaBancariaModule } from './conta-bancaria/conta-bancaria.module';
+import { ServicoModule } from './servico/servico.module';
+import { PrestadorModule } from './prestador/prestador.module';
+import { ClienteModule } from './cliente/cliente.module';
+import { UniversidadeModule } from './universidade/universidade.module';
+import { PrestadorServicoModule } from './prestador-servico/prestador-servico.module';
+import { TrumaModule } from './truma/truma.module';
+import { SupervisorModule } from './supervisor/supervisor.module';
 
 @Module({
   imports: [
@@ -29,7 +36,7 @@ import { ContaBancariaModule } from './conta-bancaria/conta-bancaria.module';
       synchronize: true, 
     }),
     TypeOrmModule.forFeature([User]), 
-    UserModule, EspecializacaoModule, EspecialistaModule, PagamentoModule, ConsultaModule, ContaBancariaModule
+    UserModule, EspecializacaoModule, EspecialistaModule, PagamentoModule, ConsultaModule, ContaBancariaModule, ServicoModule, PrestadorModule, ClienteModule, UniversidadeModule, PrestadorServicoModule, TrumaModule, SupervisorModule
   ],
 })
 export class AppModule {}
