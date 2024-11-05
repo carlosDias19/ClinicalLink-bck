@@ -1,1 +1,8 @@
-export class CreateClienteDto {}
+import { ApiProperty } from '@nestjs/swagger';
+
+export class CreateClienteDto {
+  @ApiProperty({
+    description: 'ID do usuário associado ao cliente',
+  })
+  usuarioId: string;
+}

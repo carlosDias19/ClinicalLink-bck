@@ -2,7 +2,7 @@ import { Prestador } from 'src/prestador/entities/prestador.entity';
 import { Servico } from 'src/servico/entities/servico.entity';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
-@Entity()
+@Entity('prestador_servico')
 export class PrestadorServico {
   @PrimaryColumn({ name: 'prestador_id' })
   prestadorId: number;

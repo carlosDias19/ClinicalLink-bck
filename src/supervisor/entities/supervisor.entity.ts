@@ -1,12 +1,18 @@
 import { Prestador } from 'src/prestador/entities/prestador.entity';
 import { Universidade } from 'src/universidade/entities/universidade.entity';
-import { Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
-@Entity()
+@Entity('supervisor')
 export class Supervisor {
+  @PrimaryColumn({ name: 'supervisor_id' })
+  supervisorId: string;
+
   @ManyToOne(() => Prestador)
   @JoinColumn({ name: 'supervisor_id' })
   supervisor: Prestador;
+
+  @PrimaryColumn({ name: 'supervisionado_id' })
+  supervisionadoId: string;
 
   @ManyToOne(() => Prestador)
   @JoinColumn({ name: 'supervisionado_id' })

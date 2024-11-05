@@ -1,10 +1,14 @@
-import { TipoPrestador } from 'src/enums/tipo-prestador.enum';
+import { Avaliacao } from 'src/avaliacao/entities/avaliacao.entity';
+import { Consulta } from 'src/consulta/entities/consulta.entity';
 import { PrestadorServico } from 'src/prestador-servico/entities/prestador-servico.entity';
-import { User } from 'src/user/entities/user.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Usuario } from 'src/usuario/entities/usuario.entity';
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class Prestador extends User {
+@Entity('prestador')
+export class Prestador {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
   @Column({ length: 14 })
   cnpj: string;
 
@@ -14,16 +18,18 @@ export class Prestador extends User {
   @Column({ length: 50 })
   crp: string;
 
-  @Column({
-    type: 'enum',
-    enum: TipoPrestador,
-    default: TipoPrestador.PRESTADOR,
-  })
-  tipoPestador: TipoPrestador;
+  @OneToOne(() => Usuario, (usuario) => usuario.prestador)
+  usuario: Usuario;
 
   @OneToMany(
     () => PrestadorServico,
     (prestadorServico) => prestadorServico.prestador,
   )
   prestadorServico: PrestadorServico[];
+
+  @OneToMany(() => Consulta, (consulta) => consulta.prestador)
+  consultas: Consulta[];
+
+  @OneToMany(() => Avaliacao, (avaliacao) => avaliacao.avaliado)
+  avaliacoes: Avaliacao[];
 }

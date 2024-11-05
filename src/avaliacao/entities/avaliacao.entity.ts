@@ -1,27 +1,25 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { User } from 'src/user/entities/user.entity';
+import { Cliente } from 'src/cliente/entities/cliente.entity';
+import { Prestador } from 'src/prestador/entities/prestador.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
-@Entity()
+@Entity('avaliacao')
 export class Avaliacao {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 500 })
-  name: string;
-
-  @Column('text')
-  description: string;
+  @Column({ length: 255, nullable: true })
+  descricao?: string;
 
   @Column()
-  filename: string;
+  nota: number;
 
-  @Column('int')
-  views: number;
+  // Relacionamento com Prestador
+  @ManyToOne(() => Prestador, (prestador) => prestador.avaliacoes, { eager: true })
+  @JoinColumn({ name: 'avaliado_id' })
+  avaliado: Prestador;
 
-  @ManyToOne(type => User)
-  avaliado: User;
-
-  @ManyToOne(type => User)
-  avaliador: User;
-
+  // Relacionamento com Cliente
+  @ManyToOne(() => Cliente, (cliente) => cliente.avaliacoes, { eager: true })
+  @JoinColumn({ name: 'avaliador_id' })
+  avaliador: Cliente;
 }

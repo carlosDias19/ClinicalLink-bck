@@ -1,7 +1,7 @@
 import { PrestadorServico } from 'src/prestador-servico/entities/prestador-servico.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('servico')
 export class Servico {
   @PrimaryGeneratedColumn()
   id: number;
