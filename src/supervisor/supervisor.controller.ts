@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SupervisorService } from './supervisor.service';
 import { CreateSupervisorDto } from './dto/create-supervisor.dto';
 import { UpdateSupervisorDto } from './dto/update-supervisor.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('supervisor')
 @Controller('supervisor')
 export class SupervisorController {
   constructor(private readonly supervisorService: SupervisorService) {}
@@ -23,7 +33,10 @@ export class SupervisorController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSupervisorDto: UpdateSupervisorDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateSupervisorDto: UpdateSupervisorDto,
+  ) {
     return this.supervisorService.update(+id, updateSupervisorDto);
   }
 

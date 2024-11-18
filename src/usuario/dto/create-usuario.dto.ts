@@ -1,53 +1,76 @@
-import { IsEmail, IsEnum, IsOptional, IsString, Length } from 'class-validator';
-import { TipoUsuario } from "src/enums/tipo-usuario.enum";
+import {
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUUID,
+  Length,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { TipoUsuario } from 'src/enums/tipo-usuario.enum';
+import { Genero } from 'src/enums/genero.enum';
 
 export class CreateUsuarioDto {
-  @ApiProperty({
-    description: 'Nome',
-    maxLength: 255,
-  })
+  @ApiProperty({ description: 'Nome do usuário', example: 'Silva' })
+  @IsNotEmpty()
   @IsString()
-  @Length(1, 255)
   nome: string;
 
-  @ApiProperty({
-    description: 'Telefone',
-    maxLength: 20,
-    required: false,
-  })
+  @ApiProperty({ description: 'Sobrenome do usuário', example: 'Silva' })
+  @IsNotEmpty()
   @IsString()
-  @IsOptional()
-  @Length(0, 20)
-  telefone?: string;
+  sobrenome: string;
 
   @ApiProperty({
-    description: 'Login',
-    maxLength: 50,
+    description: 'CPF do usuário',
   })
-  @IsString()
-  @Length(1, 50)
-  login: string;
+  @IsNotEmpty()
+  @Length(11)
+  cpf: string;
 
   @ApiProperty({
-    description: 'Email',
-    maxLength: 255,
+    description: 'E-mail do usuário',
+    example: 'joao@example.com',
   })
+  @IsNotEmpty()
   @IsEmail()
   @Length(1, 255)
   email: string;
 
-  @ApiProperty({
-    description: 'Senha',
-  })
+  @ApiProperty({ description: 'Senha do usuário' })
+  @IsNotEmpty()
   @IsString()
   password: string;
 
   @ApiProperty({
-    description: 'Tipo do prestador (CLIENTE, PSICOLOGO, UNIVERSITARIO)',
+    description: 'Tipo do usuário',
+    example: 'PACIENTE',
     enum: TipoUsuario,
-    default: TipoUsuario.CLIENTE,
   })
+  @IsNotEmpty()
   @IsEnum(TipoUsuario)
-  tipoPestador: TipoUsuario;
+  tipoUsuario: TipoUsuario;
+
+  @ApiProperty({
+    description: 'Gênero do usuário',
+    example: 'MASCULINO',
+    enum: Genero,
+  })
+  @IsNotEmpty()
+  @IsEnum(Genero)
+  genero: Genero;
+
+  @ApiProperty({
+    description: 'Data de nascimento',
+    example: '2024-11-20T14:30:00Z',
+  })
+  @IsNotEmpty()
+  @IsString()
+  dataNascimento: string;
+
+  @ApiProperty({ description: 'ID da universidade', required: false })
+  @IsOptional()
+  @IsUUID()
+  universidadeId?: string;
 }

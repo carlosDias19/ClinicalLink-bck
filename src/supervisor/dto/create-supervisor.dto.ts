@@ -1,26 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsUUID } from 'class-validator';
+import { IsNotEmpty, IsUUID } from 'class-validator';
 
 export class CreateSupervisorDto {
   @ApiProperty({
-    description: 'ID do prestador que será o supervisor',
-    type: 'string',
-    format: 'uuid',
+    description: 'ID do psicólogo supervisor',
   })
+  @IsNotEmpty()
   @IsUUID()
-  supervisorId: string;
+  psicologoId: string;
 
   @ApiProperty({
-    description: 'ID do prestador que será supervisionado',
-    type: 'string',
-    format: 'uuid',
+    description: 'ID do estagiário supervisionado',
   })
+  @IsNotEmpty()
   @IsUUID()
-  supervisionadoId: string;
+  estagiarioId: string;
 
   @ApiProperty({
-    description: 'ID da universidade associada ao supervisor',
-    type: 'number',
+    description: 'ID da universidade',
+    type: 'string',
   })
+  @IsNotEmpty()
+  @IsUUID()
   universidadeId: number;
 }

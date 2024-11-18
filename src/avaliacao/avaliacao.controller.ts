@@ -1,9 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { AvaliacaoService } from './avaliacao.service';
 import { Avaliacao } from './entities/avaliacao.entity';
-import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
-import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('avaliacao')
 @Controller('avaliacao')
 export class AvaliacaoController {
   constructor(private readonly avaliacaoService: AvaliacaoService) {}
@@ -19,17 +27,17 @@ export class AvaliacaoController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.avaliacaoService.findOne(id);
   }
 
   @Patch(':id')
-  updateAvaliacao(@Param('id') id: number, @Body() avaliacaoUpdate: Avaliacao) {
+  updateAvaliacao(@Param('id') id: string, @Body() avaliacaoUpdate: Avaliacao) {
     return this.avaliacaoService.updateAvaliacao(id, avaliacaoUpdate);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: string) {
     return this.avaliacaoService.delete(id);
   }
 }

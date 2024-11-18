@@ -1,5 +1,5 @@
 export enum TipoUsuario {
-  CLIENTE,
+  PACIENTE,
   PSICOLOGO,
-  UNIVERSITARIO,
+  ESTAGIARIO,
 }

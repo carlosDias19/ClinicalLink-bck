@@ -1,12 +1,21 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateServicoDto {
   @ApiProperty({
     description: 'Nome do serviço',
-    maxLength: 255,
+    example: 'Terapia Cognitivo-Comportamental',
   })
+  @IsNotEmpty()
   @IsString()
-  @Length(1, 255)
   nome: string;
+
+  @ApiProperty({
+    description: 'Descrição do serviço',
+    example: 'Terapia baseada em TCC.',
+    required: false,
+  })
+  @IsOptional()
+  @IsString()
+  descricao?: string;
 }

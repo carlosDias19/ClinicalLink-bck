@@ -1,17 +1,13 @@
-import { PrestadorServico } from 'src/prestador-servico/entities/prestador-servico.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('servico')
 export class Servico {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column({ length: 255 })
+  @Column({ type: 'varchar', length: 255 })
   nome: string;
 
-  @OneToMany(
-    () => PrestadorServico,
-    (prestadorServico) => prestadorServico.servico,
-  )
-  prestadorServico: PrestadorServico[];
+  @Column({ type: 'text', nullable: true })
+  descricao?: string;
 }

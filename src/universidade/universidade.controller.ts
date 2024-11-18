@@ -1,9 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Patch,
+  Delete,
+} from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { UniversidadeService } from './universidade.service';
 import { CreateUniversidadeDto } from './dto/create-universidade.dto';
 import { UpdateUniversidadeDto } from './dto/update-universidade.dto';
 
-@Controller('universidade')
+@ApiTags('universidades')
+@Controller('universidades')
 export class UniversidadeController {
   constructor(private readonly universidadeService: UniversidadeService) {}
 
@@ -19,16 +29,19 @@ export class UniversidadeController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.universidadeService.findOne(+id);
+    return this.universidadeService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUniversidadeDto: UpdateUniversidadeDto) {
-    return this.universidadeService.update(+id, updateUniversidadeDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateUniversidadeDto: UpdateUniversidadeDto,
+  ) {
+    return this.universidadeService.update(id, updateUniversidadeDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.universidadeService.remove(+id);
+    return this.universidadeService.remove(id);
   }
 }

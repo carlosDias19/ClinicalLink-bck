@@ -1,12 +1,11 @@
-import { IsString, Length } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-
+import { IsNotEmpty, IsString } from 'class-validator';
 export class CreateUniversidadeDto {
   @ApiProperty({
-    description: 'Nome',
-    maxLength: 255,
+    description: 'Nome da universidade',
+    example: 'Universidade Federal de São Paulo',
   })
+  @IsNotEmpty()
   @IsString()
-  @Length(1, 255)
   nome: string;
 }

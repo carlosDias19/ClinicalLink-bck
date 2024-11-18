@@ -1,25 +1,30 @@
-import { Cliente } from 'src/cliente/entities/cliente.entity';
-import { Prestador } from 'src/prestador/entities/prestador.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Consulta } from 'src/consulta/entities/consulta.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+  OneToOne,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity('avaliacao')
 export class Avaliacao {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column({ length: 255, nullable: true })
-  descricao?: string;
+  @OneToOne(() => Consulta, (consulta) => consulta.avaliacao, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'consulta_id' })
+  consulta: Consulta;
 
-  @Column()
+  @Column({ type: 'int', nullable: false })
   nota: number;
 
-  // Relacionamento com Prestador
-  @ManyToOne(() => Prestador, (prestador) => prestador.avaliacoes, { eager: true })
-  @JoinColumn({ name: 'avaliado_id' })
-  avaliado: Prestador;
+  @Column({ type: 'text', nullable: true })
+  comentario: string;
 
-  // Relacionamento com Cliente
-  @ManyToOne(() => Cliente, (cliente) => cliente.avaliacoes, { eager: true })
-  @JoinColumn({ name: 'avaliador_id' })
-  avaliador: Cliente;
+  @CreateDateColumn({ type: 'timestamp' })
+  criadoEm: Date;
 }

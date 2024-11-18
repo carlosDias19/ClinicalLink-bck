@@ -1,42 +1,35 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsOptional, IsNotEmpty } from 'class-validator';
+import { IsOptional, IsNotEmpty, IsUUID, IsString } from 'class-validator';
 
 export class CreateConsultaDto {
   @ApiProperty({
-    description: 'Data de agendamento da consulta',
-    type: 'string',
-    format: 'date-time',
+    description: 'ID do paciente',
   })
   @IsNotEmpty()
-  @IsDate()
-  dataAgendamento: Date;
+  @IsUUID()
+  pacienteId: string;
 
   @ApiProperty({
-    description: 'Data de atendimento da consulta',
-    type: 'string',
-    format: 'date-time',
+    description: 'ID do profissional (psicólogo ou estagiário)',
   })
   @IsNotEmpty()
-  @IsDate()
-  dataAtendimento: Date;
+  @IsUUID()
+  profissionalId: string;
 
   @ApiProperty({
-    description: 'Descrição da consulta',
-    type: 'string',
-    nullable: true,
+    description: 'Data e hora da consulta',
+    example: '2024-11-20T14:30:00Z',
+  })
+  @IsNotEmpty()
+  @IsString()
+  data: string;
+
+  @ApiProperty({
+    description: 'Observações da consulta',
+    example: 'Paciente relatou ansiedade.',
+    required: false,
   })
   @IsOptional()
-  descricao?: string;
-
-  @ApiProperty({
-    description: 'ID do prestador associado à consulta',
-    type: 'number',
-  })
-  prestadorId: number;
-
-  @ApiProperty({
-    description: 'ID do paciente associado à consulta',
-    type: 'number',
-  })
-  pacienteId: number;
+  @IsString()
+  observacoes?: string;
 }

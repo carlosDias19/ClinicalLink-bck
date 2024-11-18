@@ -1,26 +1,39 @@
-import { Cliente } from 'src/cliente/entities/cliente.entity';
-import { Prestador } from 'src/prestador/entities/prestador.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Avaliacao } from 'src/avaliacao/entities/avaliacao.entity';
+import { Usuario } from 'src/usuario/entities/usuario.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+  CreateDateColumn,
+  OneToOne,
+} from 'typeorm';
 
 @Entity('consulta')
 export class Consulta {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column({ name: 'data_agendamento', type: 'timestamp' })
-  dataAgendamento: Date;
-
-  @Column({ name: 'data_atendimento', type: 'timestamp' })
-  dataAtendimento: Date;
-
-  @Column({ length: 255, nullable: true })
-  descricao?: string;
-
-  @ManyToOne(() => Prestador, (prestador) => prestador.consultas, { eager: true })
-  @JoinColumn({ name: 'prestador_id' })
-  prestador: Prestador;
-
-  @ManyToOne(() => Cliente, (cliente) => cliente.consultas, { eager: true })
+  @ManyToOne(() => Usuario, (usuario) => usuario.consultas, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'paciente_id' })
-  paciente: Cliente;
+  paciente: Usuario;
+
+  @ManyToOne(() => Usuario, (usuario) => usuario.id, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'profissional_id' })
+  profissional: Usuario;
+
+  @Column({ type: 'timestamp' })
+  data: Date;
+
+  @Column({ type: 'text', nullable: true })
+  observacoes: string;
+
+  @CreateDateColumn({ name: 'criado_em', type: 'timestamp' })
+  criadoEm: Date;
+
+  @OneToOne(() => Avaliacao, (avaliacao) => avaliacao.consulta)
+  avaliacao: Avaliacao;
 }

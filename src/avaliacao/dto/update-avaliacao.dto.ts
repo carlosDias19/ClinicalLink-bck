@@ -1,19 +1,12 @@
-import { IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
+import { IsNotEmpty, IsUUID } from 'class-validator';
+import { CreateAvaliacaoDto } from './create-avaliacao.dto';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 
-export class UpdateAvaliacaoDto {
-  @IsOptional()
-  @IsString()
-  descricao?: string;
-
-  @IsOptional()
-  @IsInt()
-  @Min(0)
-  @Max(10)
-  nota?: number; 
-
-  @IsOptional()
-  avaliadoId?: number;
-
-  @IsOptional()
-  avaliadorId?: number;
+export class UpdateAvaliacaoDto extends PartialType(CreateAvaliacaoDto) {
+  @ApiProperty({
+    description: 'ID',
+  })
+  @IsNotEmpty()
+  @IsUUID()
+  id: string;
 }
