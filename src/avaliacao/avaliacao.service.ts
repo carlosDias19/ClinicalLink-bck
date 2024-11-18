@@ -1,32 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Avaliacao } from '../avaliacao/entities/avaliacao.entity';
-import { AvaliacaoRepository } from './avaliacao.repository';
+import { Repository } from 'typeorm';
+import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 
 @Injectable()
 export class AvaliacaoService {
   constructor(
     @InjectRepository(Avaliacao)
-    private readonly avaliacaoRepository: AvaliacaoRepository,
+    private readonly avaliacaoRepository: Repository<Avaliacao>,
   ) {}
 
-  create(avaliacao: Avaliacao) {
-    return this.avaliacaoRepository.createAvaliacao(avaliacao);
+  create(avaliacaoDto: CreateAvaliacaoDto) {
+    const user = this.avaliacaoRepository.create(avaliacaoDto);
+    return this.avaliacaoRepository.save(user);
   }
 
   async findOne(id: string) {
-    return this.avaliacaoRepository.findOne(id);
+    return this.avaliacaoRepository.findOne({ where: { id: id.toString() } });
   }
 
   findAll() {
-    return this.avaliacaoRepository.findAll();
+    return this.avaliacaoRepository.find();
   }
 
-  updateAvaliacao(id: string, updateAvaliacao: Avaliacao) {
-    return this.avaliacaoRepository.updateAvaliacao(id, updateAvaliacao);
+  updateAvaliacao(id: string, updateAvaliacao: CreateAvaliacaoDto) {
+    return this.avaliacaoRepository.update(id, updateAvaliacao);
   }
 
   async delete(id: string): Promise<void> {
-    this.avaliacaoRepository.deleteAvaliacao(id);
+    this.avaliacaoRepository.delete(id);
   }
 }

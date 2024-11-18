@@ -3,11 +3,14 @@ import { Module } from '@nestjs/common';
 import { Consulta } from './entities/consulta.entity';
 import { ConsultaService } from './consulta.service';
 import { ConsultaController } from './consulta.controller';
-import { ConsultaRepository } from './consulta.repository';
+import { UsuarioService } from 'src/usuario/usuario.service';
+import { UsuarioModule } from 'src/usuario/usuario.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Consulta])],
+  imports: [TypeOrmModule.forFeature([Consulta]),
+  UsuarioModule],
   controllers: [ConsultaController],
-  providers: [ConsultaService, ConsultaRepository],
+  providers: [ConsultaService],
+  exports: [ConsultaService],
 })
 export class ConsultaModule {}

@@ -17,23 +17,46 @@ export class UsuarioService {
     return this.usuarioRepository.save(user);
   }
 
+
+  //--------- GETS de Usuario ------------------------------------
+
   findAll() {
-    return `This action returns all usuario`;
+    return this.usuarioRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+    return this.usuarioRepository.findOne({ where: { id: id.toString() } });
   }
 
   findByEmail(email: string) {
     return this.usuarioRepository.findOne({ where: { email } });
   }
 
+  findByTipo(tipoUsuario: number) {
+    return this.usuarioRepository.find({ where: { tipoUsuario } });
+  }
+  
+  findByNome(nomeCompleto: string) {
+    const [nome, ...resto] = nomeCompleto.split(' ');
+    const sobrenome = resto.join(' '); 
+
+    return this.usuarioRepository.findOne({
+      where: {
+        nome,
+        sobrenome,
+      },
+    });
+  }
+
+   //---------------------------------------------
+
+
   update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+    return this.usuarioRepository.create();
   }
 
   remove(id: number) {
     return `This action removes a #${id} usuario`;
   }
+
 }
