@@ -1,26 +1,25 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsUUID } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
+import { Universidade } from 'src/universidade/entities/universidade.entity';
+import { Usuario } from 'src/usuario/entities/usuario.entity';
 
 export class CreateSupervisorDto {
   @ApiProperty({
     description: 'ID do psicólogo supervisor',
   })
   @IsNotEmpty()
-  @IsUUID()
-  psicologoId: string;
+  psicologo: Usuario;
 
   @ApiProperty({
     description: 'ID do estagiário supervisionado',
   })
   @IsNotEmpty()
-  @IsUUID()
-  estagiarioId: string;
+  estagiario: Usuario;
 
   @ApiProperty({
     description: 'ID da universidade',
     type: 'string',
   })
   @IsNotEmpty()
-  @IsUUID()
-  universidadeId: number;
+  universidade: Universidade;
 }

@@ -32,6 +32,11 @@ export class SupervisorController {
     return this.supervisorService.findOne(+id);
   }
 
+  @Get(':id/estagiarios')
+  findByEstagiario(@Param('id') id: string) {
+    return this.supervisorService.findEstagiarios(id);
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,

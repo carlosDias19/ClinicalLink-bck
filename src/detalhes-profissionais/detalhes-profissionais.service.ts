@@ -1,15 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDetalhesProfissionaisDto } from './dto/create-detalhes-profissionais.dto';
 import { UpdateDetalhesProfissionaisDto } from './dto/update-detalhes-profissionais.dto';
+import { DetalhesProfissionais } from './entities/detalhes-profissionais.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class DetalhesProfissionaisService {
-  create(createDetalhesProfissionaisDto: CreateDetalhesProfissionaisDto) {
-    return 'This action adds a new detalhesProfissionai';
-  }
+  constructor(
+    @InjectRepository(DetalhesProfissionais)
+    private readonly detalhesProRepository: Repository<DetalhesProfissionais>,
+) {}
+
+create(data: CreateDetalhesProfissionaisDto) {
+  const detalhesProfissionais = this.detalhesProRepository.create(data);
+  return this.detalhesProRepository.save(detalhesProfissionais);
+}
+
 
   findAll() {
-    return `This action returns all detalhesProfissionais`;
+   // return this.detalhesProRepository.find()`;
   }
 
   findOne(id: number) {
