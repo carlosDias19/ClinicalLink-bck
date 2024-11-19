@@ -14,9 +14,11 @@ import { Consulta } from 'src/consulta/entities/consulta.entity';
 import { Universidade } from 'src/universidade/entities/universidade.entity';
 import * as bcrypt from 'bcrypt';
 import { Genero } from 'src/enums/genero.enum';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('usuario')
 export class Usuario {
+  @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
