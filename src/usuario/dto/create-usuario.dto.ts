@@ -4,12 +4,12 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
-  IsUUID,
   Length,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { TipoUsuario } from 'src/enums/tipo-usuario.enum';
 import { Genero } from 'src/enums/genero.enum';
+import { CreateDetalhesProfissionaisDto } from 'src/detalhes-profissionais/dto/create-detalhes-profissionais.dto';
 
 export class CreateUsuarioDto {
   @ApiProperty({ description: 'Nome do usuário', example: 'Silva' })
@@ -26,7 +26,7 @@ export class CreateUsuarioDto {
     description: 'CPF do usuário',
   })
   @IsNotEmpty()
-  @Length(11)
+  @Length(14)
   cpf: string;
 
   @ApiProperty({
@@ -69,8 +69,7 @@ export class CreateUsuarioDto {
   @IsString()
   dataNascimento: string;
 
-  @ApiProperty({ description: 'ID da universidade', required: false })
+  @ApiProperty({ type: CreateDetalhesProfissionaisDto, required: false })
   @IsOptional()
-  @IsUUID()
-  universidadeId?: string;
+  detalhesProfissionais: CreateDetalhesProfissionaisDto;
 }

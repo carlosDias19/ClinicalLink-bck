@@ -1,7 +1,7 @@
 export enum Genero {
-  MASCULINO = 'Masculino',
-  FEMININO = 'Feminino',
-  NAO_BINARIO = 'Não Binário',
-  OUTRO = 'Outro',
-  PREFIRO_NAO_DECLARAR = 'Prefiro não declarar',
+  MASCULINO = 'MASCULINO',
+  FEMININO = 'FEMININO',
+  NAO_BINARIO = 'NAO_BINARIO',
+  OUTRO = 'OUTRO',
+  PREFIRO_NAO_DECLARAR = 'PREFIRO_NAO_DECLARAR',
 }

@@ -4,16 +4,25 @@ import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usuario } from './entities/usuario.entity';
 import { Repository } from 'typeorm';
+import { DetalhesProfissionaisService } from 'src/detalhes-profissionais/detalhes-profissionais.service';
 
 @Injectable()
 export class UsuarioService {
   constructor(
     @InjectRepository(Usuario)
     private readonly usuarioRepository: Repository<Usuario>,
+    private readonly detalhesProfissionaisService: DetalhesProfissionaisService,
   ) {}
 
-  create(createUsuarioDto: CreateUsuarioDto) {
+  async create(createUsuarioDto: CreateUsuarioDto) {
     const user = this.usuarioRepository.create(createUsuarioDto);
+
+    if (createUsuarioDto.detalhesProfissionais) {
+      await this.detalhesProfissionaisService.create(
+        createUsuarioDto.detalhesProfissionais,
+      );
+    }
+
     return this.usuarioRepository.save(user);
   }
 

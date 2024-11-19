@@ -29,13 +29,14 @@ export class Usuario {
   @Column({ length: 255 })
   email: string;
 
-  @Column({ length: 11 })
+  @Column({ length: 14 })
   cpf: string;
 
   @Column()
   password: string;
 
   @Column({
+    name: 'tipo_usuario',
     type: 'enum',
     enum: TipoUsuario,
     default: TipoUsuario.PACIENTE,
