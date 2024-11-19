@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Usuario } from './entities/usuario.entity';
 import { Repository } from 'typeorm';
 import { DetalhesProfissionaisService } from 'src/detalhes-profissionais/detalhes-profissionais.service';
+import { TipoUsuario } from 'src/enums/tipo-usuario.enum';
 
 @Injectable()
 export class UsuarioService {
@@ -27,19 +28,35 @@ export class UsuarioService {
   }
 
   findAll() {
-    return `This action returns all usuario`;
+    return this.usuarioRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+    return this.usuarioRepository.findOne({ where: { id: id.toString() } });
   }
 
   findByEmail(email: string) {
     return this.usuarioRepository.findOne({ where: { email } });
   }
 
-  update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+  findByTipo(tipoUsuario: TipoUsuario) {
+    return this.usuarioRepository.find({ where: { tipoUsuario } });
+  }
+
+  findByNome(nomeCompleto: string) {
+    const [nome, ...resto] = nomeCompleto.split(' ');
+    const sobrenome = resto.join(' ');
+
+    return this.usuarioRepository.findOne({
+      where: {
+        nome,
+        sobrenome,
+      },
+    });
+  }
+
+  update(id: string, updateUsuarioDto: UpdateUsuarioDto) {
+    return this.usuarioRepository.update(id, updateUsuarioDto);
   }
 
   remove(id: number) {

@@ -44,7 +44,7 @@ export class DetalhesProfissionaisController {
     @Body() updateDetalhesProfissionaisDto: UpdateDetalhesProfissionaisDto,
   ) {
     return this.detalhesProfissionaisService.update(
-      +id,
+      id,
       updateDetalhesProfissionaisDto,
     );
   }

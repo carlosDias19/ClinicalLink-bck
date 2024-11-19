@@ -20,7 +20,7 @@ export class DetalhesProfissionaisService {
   }
 
   findAll() {
-    return `This action returns all detalhesProfissionais`;
+    return [];
   }
 
   findOne(id: number) {
@@ -28,10 +28,13 @@ export class DetalhesProfissionaisService {
   }
 
   update(
-    id: number,
+    id: string,
     updateDetalhesProfissionaiDto: UpdateDetalhesProfissionaisDto,
   ) {
-    return `This action updates a #${id} detalhesProfissionais`;
+    return this.detalhesProfissionaisRepository.update(
+      id,
+      updateDetalhesProfissionaiDto,
+    );
   }
 
   remove(id: number) {

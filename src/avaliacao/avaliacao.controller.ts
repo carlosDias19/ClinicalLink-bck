@@ -10,6 +10,7 @@ import {
 import { AvaliacaoService } from './avaliacao.service';
 import { Avaliacao } from './entities/avaliacao.entity';
 import { ApiTags } from '@nestjs/swagger';
+import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 
 @ApiTags('avaliacao')
 @Controller('avaliacao')
@@ -17,7 +18,7 @@ export class AvaliacaoController {
   constructor(private readonly avaliacaoService: AvaliacaoService) {}
 
   @Post()
-  create(@Body() createAvaliacaoDto: Avaliacao) {
+  create(@Body() createAvaliacaoDto: CreateAvaliacaoDto) {
     return this.avaliacaoService.create(createAvaliacaoDto);
   }
 
@@ -32,7 +33,7 @@ export class AvaliacaoController {
   }
 
   @Patch(':id')
-  updateAvaliacao(@Param('id') id: string, @Body() avaliacaoUpdate: Avaliacao) {
+  updateAvaliacao(@Param('id') id: string, @Body() avaliacaoUpdate: CreateAvaliacaoDto) {
     return this.avaliacaoService.updateAvaliacao(id, avaliacaoUpdate);
   }
 

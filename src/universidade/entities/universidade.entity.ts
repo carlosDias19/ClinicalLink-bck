@@ -1,8 +1,10 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Usuario } from 'src/usuario/entities/usuario.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('universidade')
 export class Universidade {
+  @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
