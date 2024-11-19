@@ -24,8 +24,7 @@ export class DetalhesProfissionaisController {
     @Body() createDetalhesProfissionaisDto: CreateDetalhesProfissionaisDto,
   ) {
     return this.detalhesProfissionaisService.create(
-      createDetalhesProfissionaisDto,
-    );
+      createDetalhesProfissionaisDto,);
   }
 
   @Get()

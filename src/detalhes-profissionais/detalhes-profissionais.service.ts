@@ -14,8 +14,7 @@ export class DetalhesProfissionaisService {
 
   create(createDetalhesProfissionaisDto: CreateDetalhesProfissionaisDto) {
     const entity = this.detalhesProfissionaisRepository.create(
-      createDetalhesProfissionaisDto,
-    );
+      createDetalhesProfissionaisDto,);
     return this.detalhesProfissionaisRepository.save(entity);
   }
 

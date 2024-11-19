@@ -29,10 +29,12 @@ export class SupervisorService {
   async findEstagiarios(supervisorUsuario: string) {
     return this.supervisorRepository
       .createQueryBuilder('supervisor')
-      .innerJoinAndSelect('supervisor.psicologo', 'psicologo') // Faz o join com a tabela Usuario
-      .where('psicologo.id = :supervisorUsuario', { supervisorUsuario })  
+      .innerJoinAndSelect('supervisor.estagiario', 'estagiario') 
+      .innerJoin('supervisor.psicologo', 'psicologo') 
+      .where('psicologo.id = :supervisorUsuario', { supervisorUsuario }) 
       .getMany();
   }
+  
 
   update(id: number, updateSupervisorDto: UpdateSupervisorDto) {
     return `This action updates a #${id} supervisor`;
