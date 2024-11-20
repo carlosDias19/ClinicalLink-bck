@@ -1,4 +1,10 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete, } from '@nestjs/common';
 import { ConsultaService } from './consulta.service';
 import { Consulta } from './entities/consulta.entity';
 import { ApiTags } from '@nestjs/swagger';
@@ -13,4 +19,11 @@ export class ConsultaController {
   create(@Body() consulta: CreateConsultaDto) {
     return this.consultaService.createConsulta(consulta);
   }
+
+  @Get(':id/consultaPsicologo')
+  findOne(@Param('id') id: string) {
+    return this.consultaService.findConsultaByProfissional(id);
+  }
+
 }
+

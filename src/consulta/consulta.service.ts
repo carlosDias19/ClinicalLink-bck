@@ -38,12 +38,14 @@ export class ConsultaService {
         .getMany();
     }
 
-    async findConsultaByPaciente(nomeCompleto: string)
-    {
-        // this.usuarioService.fi
-        // return this.consultaRepository.find
+    async findConsultaByProfissional(id: string) {
+        return this.consultaRepository
+            .createQueryBuilder('consulta')
+            .innerJoinAndSelect('consulta.profissional', 'profissional') 
+            .innerJoinAndSelect('consulta.paciente', 'paciente')         
+            .where('profissional.id = :idUsuario', { idUsuario: id })    
+            .getMany();
     }
-    
     updateConsulta(id: string, updateAvaliacao: UpdateConsultaDto) 
     {
         return this.consultaRepository.update(id, updateAvaliacao);
