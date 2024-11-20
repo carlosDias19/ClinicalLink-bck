@@ -31,6 +31,7 @@ export class SupervisorService {
       .createQueryBuilder('supervisor')
       .innerJoinAndSelect('supervisor.estagiario', 'estagiario') 
       .innerJoin('supervisor.psicologo', 'psicologo') 
+      .innerJoinAndSelect('supervisor.universidade', 'universidade')
       .where('psicologo.id = :supervisorUsuario', { supervisorUsuario }) 
       .getMany();
   }
