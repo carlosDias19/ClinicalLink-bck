@@ -22,10 +22,10 @@ export class DetalhesProfissionaisService {
     return [];
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} detalhesProfissionais`;
   }
-
+  
   update(
     id: string,
     updateDetalhesProfissionaiDto: UpdateDetalhesProfissionaisDto,
